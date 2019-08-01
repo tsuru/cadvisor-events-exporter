@@ -1,0 +1,17 @@
+dist: xenial
+language: go
+install: true
+go:
+- 1.12.x
+jobs:
+  include:
+  - stage: test
+    script: go test ./...
+notifications:
+  slack:
+    rooms:
+      secure: hWSaHOWL5aj1K7pXs3RSeKb7JJ6ECV8EUbP5UmklrLwOlavnTsK2LAkRHXGb2pAQq91SYQP9WPUp+xbwp14IvHsEHgcNIU2Q4ZT7BDlR6osDTYRcjO42KfEoz/tbGZSMNlKblhVkuEUS1xFTAI/TmMcz6kupUIdK3hII3rzXCas2gjkZ/EqvtutvQU8OeAHT7YVGrg5aERwQAJNfoeNHQcWNU6WWRa1RfgFXxCKfZnofyUwwlrzmOMVpqqpK06Rrjvq6o5pyRD8imBF2qdy6QwpVOpTNgbCMrIDbfCY0hmlzJdVAK8o3ABkzZQdbm6bYCzzf8OBACTwK9NH+XNMoCGwexJhl8mHEmADAYV+2kdGQxZLW7+ShHIsbQafPFolliboR9z8AKMhOjGLjc6/je9Be+pUrVAvILObjA3KpUm8gKILQ3/cyVHzuTk/w+hMGNBrkACq0kfzFEpnusUvCt0Skd69HWQ2TkT7aR6er72aj3Jd7lFiRF9zAS4weRFo3/U2cnmBSctF1xXf5uUkZwQYSwp1Q4MLw+fZ1pmB1oguKnD5PEMVX5+lBr00gz88MqzQV0frdXVoue4VxD0fl9lqgyn7p/DhDoJ3ugBnKYrRWjEtINdO39fRk8fH9oN6YjxJCrgUAN4sB5/ImV2JQ1Tq4YwfpWE7ZnEkRDswMzXk=
+env:
+  global:
+  - GO111MODULE=on
+  - GOPROXY=https://proxy.golang.org
