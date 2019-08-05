@@ -1,5 +1,7 @@
 # cadvisor events exporter
 
+[![Build Status](https://travis-ci.org/tsuru/cadvisor-events-exporter.svg?branch=master)](https://travis-ci.org/tsuru/cadvisor-events-exporter)
+
 This is a prototype of a proxy server transforming cadvisor events into
 prometheus counters. Tracking events as prometheus metrics can be useful for
 exposing the number of oom's and oom kills in a cluster.
