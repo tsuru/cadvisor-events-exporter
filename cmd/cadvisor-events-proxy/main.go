@@ -42,6 +42,7 @@ func (s *proxyEventsLister) ListEvents(r *http.Request) ([]info.Event, error) {
 	qs := u.Query()
 	qs.Set("all_events", "true")
 	qs.Set("subcontainers", "true")
+	qs.Set("max_events", "-1")
 	u.RawQuery = qs.Encode()
 	rsp, err := client.Get(u.String())
 	if err != nil {
