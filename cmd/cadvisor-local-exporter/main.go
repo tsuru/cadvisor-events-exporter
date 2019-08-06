@@ -51,6 +51,7 @@ type localEventsLister struct {
 func (l *localEventsLister) ListEvents(r *http.Request) ([]info.Event, error) {
 	req := events.NewRequest()
 	req.IncludeSubcontainers = true
+	req.MaxEventsReturned = -1
 	req.EventType = map[info.EventType]bool{
 		info.EventOom:               true,
 		info.EventOomKill:           true,
