@@ -1,6 +1,8 @@
 dist: xenial
 language: go
 install: true
+services:
+- docker
 go:
 - 1.12.x
 jobs:
