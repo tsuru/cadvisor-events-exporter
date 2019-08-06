@@ -4,7 +4,7 @@ ENV GO111MODULE=on GOPROXY=https://proxy.golang.org
 RUN apk update
 RUN apk add build-base linux-headers
 COPY . .
-RUN go get -mod=vendor ./...
+RUN go install -mod=vendor ./...
 
 FROM alpine
 COPY --from=build /go/bin/* /usr/bin/
