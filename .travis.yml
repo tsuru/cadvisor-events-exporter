@@ -8,7 +8,7 @@ go:
 jobs:
   include:
   - stage: test
-    script: go test ./...
+    script: go test -mod=vendor ./...
   - stage: push to docker
     script:
     - curl https://raw.githubusercontent.com/tsuru/push-to-docker/master/push.sh | bash
