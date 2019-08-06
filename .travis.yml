@@ -7,6 +7,10 @@ jobs:
   include:
   - stage: test
     script: go test ./...
+  - stage: push to docker
+    script:
+    - curl https://raw.githubusercontent.com/tsuru/push-to-docker/master/push.sh | bash
+    if: "(NOT type IN (pull_request)) AND (branch = master) OR (tag IS present)"
 notifications:
   slack:
     rooms:
@@ -15,3 +19,5 @@ env:
   global:
   - GO111MODULE=on
   - GOPROXY=https://proxy.golang.org
+  - GO_FOR_RELEASE=1.12
+  - secure: LiXFT2puldlX5bFO4J4dY7NMDeIMiLjp6h/cgfKeZyECQ5XxIpg9NobY+K8ruEqBDHQm8dYBQiMFDSXUpUfliLOD/C/W9tEf6yDDEHOB/EhGbMIvRCObkySKXi9UDtceUgvBCpmh8eMpDNAdz3qebGeZI/6Fmda8Vv7r5kmWaRwsMncu809iT+JClTwvw5jDNN14KqEaJeUNdk3bYYfiBWngFGwoSqClWNRVZrXo2eotwphlusO8CA/2k1kK7RjEnVP32jeRL9tXtcPe6Jg1gWk1dO9GJpLhpOZiFLMZYR/weEusXsZUSDFdURO3s6XmEyMLnFK3+ZqzTckIbN9QBXvEIPf3Q/NiTrpel69uy0RTrHsRyWyBA4bIHIN3KojTzVj/LDzl9ktOoDhSYXVfzHnBhriAATwa6EldL4NxBDiMEI2ocDR2d2+nCB4NUbBsNJl9Yz5+1T8DIffWuKqmeb/fFGogeK0AEJeFkMwiPC44pe5GQXn5ynDX2LfEWT81Lue2Rk4Yz+VYqwBQuFgRm45q8xSHRt9XcKrzq2HqUeBuoNJsKsGP5pEyNpeOZo5RB5fC1XfbNUbDvliA+QAd4UcpfaP5kX0pCP0M28sVlpLVMNEME4VYnQENSwFFIRPph8NXfr/XrG/V7z5srNPkSHZ0PyhF/RiuW9CvWUpf6VI=
