@@ -9,4 +9,5 @@ RUN go install -mod=vendor ./...
 FROM alpine
 COPY --from=build /go/bin/* /usr/bin/
 
-CMD [ "/usr/bin/cadvisor-local-exporter", "-logtostderr" ]
+ENTRYPOINT [ "/usr/bin/cadvisor-local-exporter" ]
+CMD [ "-logtostderr" ]
