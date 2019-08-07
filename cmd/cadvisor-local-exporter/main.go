@@ -16,6 +16,8 @@ import (
 	"k8s.io/klog"
 )
 
+var oomOnly = flag.Bool("oom-only", false, "Enable only oom events")
+
 func startManager() (manager.Manager, error) {
 	klog.InitFlags(nil)
 	flag.Parse()
@@ -53,10 +55,12 @@ func (l *localEventsLister) ListEvents(r *http.Request) ([]info.Event, error) {
 	req.IncludeSubcontainers = true
 	req.MaxEventsReturned = -1
 	req.EventType = map[info.EventType]bool{
-		info.EventOom:               true,
-		info.EventOomKill:           true,
-		info.EventContainerCreation: true,
-		info.EventContainerDeletion: true,
+		info.EventOom:     true,
+		info.EventOomKill: true,
+	}
+	if oomOnly == nil || !*oomOnly {
+		req.EventType[info.EventContainerCreation] = true
+		req.EventType[info.EventContainerDeletion] = true
 	}
 	evts, err := l.manager.GetPastEvents(req)
 	if err != nil {

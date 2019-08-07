@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"flag"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -22,6 +23,8 @@ var (
 
 	httpsRegexp = regexp.MustCompile(`^https?://.*`)
 	urlRegexp   = regexp.MustCompile(`/.+?/(.+)`)
+
+	oomOnly = flag.Bool("oom-only", false, "Enable only oom events")
 )
 
 type proxyEventsLister struct{}
@@ -40,9 +43,14 @@ func (s *proxyEventsLister) ListEvents(r *http.Request) ([]info.Event, error) {
 	}
 	u.Path = "/api/v1.3/events"
 	qs := u.Query()
-	qs.Set("all_events", "true")
 	qs.Set("subcontainers", "true")
 	qs.Set("max_events", "-1")
+	if oomOnly == nil || !*oomOnly {
+		qs.Set("all_events", "true")
+	} else {
+		qs.Set("oom_events", "true")
+		qs.Set("oom_kill_events", "true")
+	}
 	u.RawQuery = qs.Encode()
 	rsp, err := client.Get(u.String())
 	if err != nil {
@@ -75,6 +83,7 @@ func parseGrafanaURL(r *http.Request) string {
 }
 
 func main() {
+	flag.Parse()
 	lister := &proxyEventsLister{}
 	api.RunServer(lister)
 }
