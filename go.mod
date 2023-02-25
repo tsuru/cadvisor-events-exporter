@@ -19,7 +19,7 @@ require (
 	github.com/coreos/rkt v1.25.0 // indirect
 	github.com/cyphar/filepath-securejoin v0.0.0-20170720062807-ae69057f2299 // indirect
 	github.com/davecgh/go-spew v0.0.0-20171005155431-ecdeabc65495 // indirect
-	github.com/docker/distribution v0.0.0-20170726174610-edc3ab29cdff // indirect
+	github.com/docker/distribution v2.8.0+incompatible // indirect
 	github.com/docker/docker v0.0.0-20180612054059-a9fbbdc8dd87 // indirect
 	github.com/docker/go-connections v0.3.0 // indirect
 	github.com/docker/go-units v0.0.0-20151230175859-0bbddae09c5a // indirect
