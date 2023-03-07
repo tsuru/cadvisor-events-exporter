@@ -46,9 +46,9 @@ require (
 	github.com/opencontainers/image-spec v0.0.0-20170604055404-372ad780f634 // indirect
 	github.com/opencontainers/runc v0.0.0-20180108143726-d5b4a3eddbe4 // indirect
 	github.com/opencontainers/runtime-spec v1.0.0 // indirect
-	github.com/opencontainers/selinux v0.0.0-20170621221121-4a2974bf1ee9 // indirect
+	github.com/opencontainers/selinux v1.3.1 // indirect
 	github.com/pborman/uuid v0.0.0-20150824212802-cccd189d45f7 // indirect
-	github.com/pkg/errors v0.8.0
+	github.com/pkg/errors v0.8.1
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/pquerna/ffjson v0.0.0-20171002144729-d49c2bc1aa13 // indirect
 	github.com/prometheus/client_golang v0.9.1
